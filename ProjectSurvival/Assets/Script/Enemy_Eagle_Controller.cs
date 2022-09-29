@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Enemy_Eagle_Controller : MonoBehaviour
@@ -21,12 +22,14 @@ public class Enemy_Eagle_Controller : MonoBehaviour
     Transform targetTransform;
 
     Vector3 endPosition;
+   
 
     CircleCollider2D circleCollider;
+    BoxCollider2D boxCollider;
 
     public bool isMove = false;
 
-    EagleAmmoFire EAF;
+    SpriteRenderer Renderer;
 
 
     // Start is called before the first frame update
@@ -37,7 +40,11 @@ public class Enemy_Eagle_Controller : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         
         circleCollider = GetComponent<CircleCollider2D>();
-        EAF = GetComponent<EagleAmmoFire>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        Renderer = GetComponent<SpriteRenderer>();
+       
+
+
     }
 
     // Update is called once per frame
@@ -108,7 +115,6 @@ public class Enemy_Eagle_Controller : MonoBehaviour
             currentSpeed = pursuitSpeed;
 
             targetTransform = collision.gameObject.transform;
-            EAF.RandomPosition = collision.gameObject.transform.position;
             if (moveCoroutine != null)
             {
                
@@ -146,6 +152,41 @@ public class Enemy_Eagle_Controller : MonoBehaviour
         {
             Gizmos.DrawWireSphere(transform.position, circleCollider.radius);
         }
+    }
+
+    public void OnDamaged()
+    {
+        
+        
+        Renderer.color = new Color(1, 1, 1, 0.4f);
+
+        Renderer.flipY = true;
+        circleCollider.enabled = false;
+        boxCollider.enabled = false;
+        gameObject.layer = 9;
+        rb2d.bodyType = RigidbodyType2D.Static;
+        Invoke("offDamaged", 3f);
+    }
+
+    public void offDamaged()
+    {
+        
+
+        Renderer.color = new Color(1, 1, 1, 1f);
+
+        Renderer.flipY = false;
+        gameObject.layer = 0;
+        boxCollider.enabled = true;
+        circleCollider.enabled = true;
+        rb2d.bodyType = RigidbodyType2D.Dynamic;
+        
+        
+
+    }
+
+    void DeActive()        
+    {
+        gameObject.SetActive(false);
     }
 
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CharatorManager : MonoBehaviour
 {
-    public float speed;
 
     public float Hp;
 

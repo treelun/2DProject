@@ -1,17 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EagleEnemy : Enemy
 {
+    GameObject Player;
+    GameObject PlayerHpBar;
+    
+    Rigidbody2D rb2d;
     //방향 전환을 위한 벡터값
     public Vector2 direction;
     //독수리가 방향전환 지점을 체크하기위해서 LayerMask를 사용
     public LayerMask layerMask_wall;
     //어떤걸 기준으로 체크할것인가 에디터에서 넣어줌
     public Transform checkWall;
+
+    public float Hp;
+
+    private void Start()
+    {
+        
+        rb2d = GetComponent<Rigidbody2D>();
+        Player = GameObject.Find("Player");
+        PlayerHpBar = GameObject.Find("PlayerHpBar");
+    }
     // Start is called before the first frame update
-    IEnumerator Start()
+    private void Update()
+    {
+        StartCoroutine(EnemyMove());
+        if (PlayerHpBar.GetComponent<Image>().fillAmount == 0)
+        {
+            Destroy(Player);
+        }
+    }
+    public IEnumerator EnemyMove()
     {
         while (true)
         {
@@ -35,5 +58,42 @@ public class EagleEnemy : Enemy
 
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            if (transform.position.y > collision.transform.position.y)
+            {
+                OnDamaged(collision.transform.position);
+            }
+            
+        }
+    }
+    
+
+    void OnDamaged(Vector2 targetPos)
+    {
+        Player.gameObject.layer = 9;
+
+        Player.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
+        
+
+        int dirc = Player.transform.position.x - targetPos.x > 0 ? 1 : -1;
+        Player.GetComponent<Rigidbody2D>().AddForce(new Vector2(dirc, 1) * 9, ForceMode2D.Impulse);
+        PlayerHpBar.GetComponent<Image>().fillAmount -= 0.4f;
+
+        Invoke("offDamage", 2f);
+
+    }
+
+    void offDamage()
+    {
+        Player.gameObject.layer = 0;
+        Player.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+    }
+
+
+
 
 }

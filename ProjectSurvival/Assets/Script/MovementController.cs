@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovementController : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class MovementController : MonoBehaviour
     public float movementSpeed;
     public float Jumpforce;
     public float maxSpeed;
-    
+    GameObject Enemy_Eagle;
     Vector2 movement = new Vector2();
 
     Rigidbody2D rb2d;
@@ -17,6 +18,7 @@ public class MovementController : MonoBehaviour
     public bool isRun = false;
 
     Animator animator;
+    GameObject EnemyHpBar;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,10 @@ public class MovementController : MonoBehaviour
         // 그렇기 때문에 start가 됐든 Awake가 됐든 위에서 부르든 해서 꼭 담아주자. 후...
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        EnemyHpBar = GameObject.Find("EnemyHpBar");
+        Enemy_Eagle = GameObject.Find("Enemy_Eagle");
+
+
     }
 
     // Update is called once per frame
@@ -33,6 +39,10 @@ public class MovementController : MonoBehaviour
     {
         MoveCharacter();
         JumpCharacter();
+        if (EnemyHpBar.GetComponent<Image>().fillAmount == 0)
+        {
+            Destroy(Enemy_Eagle);
+        }
     }
     private void FixedUpdate()
     {
@@ -121,5 +131,28 @@ public class MovementController : MonoBehaviour
             //점프 애니메이션 종료
             animator.SetBool("isJump", false);
         }
+
+        if (collision.transform.tag == "Eagle")
+        {
+            if (rb2d.velocity.y < 0 && transform.position.y > collision.transform.position.y)
+            {
+                OnAttack(collision.transform);
+            }
+        }
+
     }
+
+
+    void OnAttack(Transform enermy)
+    {
+        rb2d.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+        EnemyHpBar.GetComponent<Image>().fillAmount -= 0.4f;
+        Enemy_Eagle_Controller enemy_Eagle_Controller = enermy.GetComponent<Enemy_Eagle_Controller>();
+        enemy_Eagle_Controller.OnDamaged();
+    }
+
+
+
+
+
 }
