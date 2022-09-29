@@ -21,12 +21,12 @@ public class Enemy_Eagle_Controller : MonoBehaviour
     Transform targetTransform;
 
     Vector3 endPosition;
-    Vector2 direction;
 
-    float currentAngle = 0;
     CircleCollider2D circleCollider;
 
-    
+    public bool isMove = false;
+
+    EagleAmmoFire EAF;
 
 
     // Start is called before the first frame update
@@ -37,13 +37,13 @@ public class Enemy_Eagle_Controller : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         
         circleCollider = GetComponent<CircleCollider2D>();
+        EAF = GetComponent<EagleAmmoFire>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(rb2d.position, endPosition, Color.red);
-        Debug.Log(targetTransform);
+
     }
 
     public IEnumerator Move(Rigidbody2D rigidBodyToMove, float speed)
@@ -74,8 +74,9 @@ public class Enemy_Eagle_Controller : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
+        isMove = true;
 
-       
+
     }
 
 
@@ -107,13 +108,15 @@ public class Enemy_Eagle_Controller : MonoBehaviour
             currentSpeed = pursuitSpeed;
 
             targetTransform = collision.gameObject.transform;
-
+            EAF.RandomPosition = collision.gameObject.transform.position;
             if (moveCoroutine != null)
             {
+               
                 StopCoroutine(moveCoroutine);
             }
-
+            
             moveCoroutine = StartCoroutine(Move(rb2d, currentSpeed));
+            
         }
         
         
@@ -133,6 +136,7 @@ public class Enemy_Eagle_Controller : MonoBehaviour
             }
 
             targetTransform = null;
+            
         }
     }
 

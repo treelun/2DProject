@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 810878594}
   - component: {fileID: 810878595}
   - component: {fileID: 1246676599}
+  - component: {fileID: 2041632669}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -205,3 +206,18 @@ CircleCollider2D:
   m_Offset: {x: -0.1, y: -0.4}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &2041632669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003069471040720439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063d99d1eab4a2448b3596332c3f943e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoPrefab: {fileID: 4091157891096541802, guid: 06bb652eb24b3954baaf2fc455c652a1, type: 3}
+  poolSize: 7
+  weaponVelocity: 2
