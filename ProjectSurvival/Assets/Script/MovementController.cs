@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class MovementController : MonoBehaviour
 {
@@ -42,6 +44,7 @@ public class MovementController : MonoBehaviour
         if (EnemyHpBar.GetComponent<Image>().fillAmount == 0)
         {
             Destroy(Enemy_Eagle);
+            SceneManager.LoadScene("GameClear");
         }
     }
     private void FixedUpdate()
@@ -83,6 +86,19 @@ public class MovementController : MonoBehaviour
         }
         //위와 같이 속도 제한을 위해 만들었지만 왼쪽으로의 움직임을 제한
         else if (rb2d.velocity.x < -maxSpeed && Input.GetKey(KeyCode.A))
+        {
+            rb2d.velocity = new Vector2(-maxSpeed, rb2d.velocity.y);
+            key = -1;
+        }
+        if (rb2d.velocity.x > maxSpeed && Input.GetKey(KeyCode.RightArrow))
+        {
+            //rigidbody2d.velocity에 Vector2값을 넣어줌 AddForce를 사용하기에 가속이 계속붙어 속도에 제한을줌
+            rb2d.velocity = new Vector2(maxSpeed, rb2d.velocity.y);
+            //키값을 받는 if문을 더 만들기 싫어서 여기에 넣어버림
+            key = 1;
+        }
+        //위와 같이 속도 제한을 위해 만들었지만 왼쪽으로의 움직임을 제한
+        else if (rb2d.velocity.x < -maxSpeed && Input.GetKey(KeyCode.LeftArrow))
         {
             rb2d.velocity = new Vector2(-maxSpeed, rb2d.velocity.y);
             key = -1;

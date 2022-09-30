@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EagleEnemy : Enemy
 {
     GameObject Player;
     GameObject PlayerHpBar;
-    
+    GameObject GameOver;
     Rigidbody2D rb2d;
     //방향 전환을 위한 벡터값
     public Vector2 direction;
@@ -24,6 +25,8 @@ public class EagleEnemy : Enemy
         rb2d = GetComponent<Rigidbody2D>();
         Player = GameObject.Find("Player");
         PlayerHpBar = GameObject.Find("PlayerHpBar");
+        GameOver = GameObject.Find("GameOver");
+        GameOver.SetActive(false);
     }
     // Start is called before the first frame update
     private void Update()
@@ -32,6 +35,7 @@ public class EagleEnemy : Enemy
         if (PlayerHpBar.GetComponent<Image>().fillAmount == 0)
         {
             Destroy(Player);
+            GameOver.SetActive(true);
         }
     }
     public IEnumerator EnemyMove()
