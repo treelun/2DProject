@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 
 public class MovementController : MonoBehaviour
@@ -21,6 +21,7 @@ public class MovementController : MonoBehaviour
 
     Animator animator;
     GameObject EnemyHpBar;
+    GameObject door;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,8 @@ public class MovementController : MonoBehaviour
         animator = GetComponent<Animator>();
         EnemyHpBar = GameObject.Find("EnemyHpBar");
         Enemy_Eagle = GameObject.Find("Enemy_Eagle");
+        door = GameObject.Find("door");
+        door.SetActive(false);
 
 
     }
@@ -41,16 +44,18 @@ public class MovementController : MonoBehaviour
     {
         MoveCharacter();
         JumpCharacter();
+        //EnemyHpBar의 fillAmount가 0 즉 죽으면 
         if (EnemyHpBar.GetComponent<Image>().fillAmount == 0)
         {
+            //적 제거, 적 HPBar제거
             Destroy(Enemy_Eagle);
-            SceneManager.LoadScene("GameClear");
+            Destroy(EnemyHpBar);
+            //다음 스테이지로 가기위한 문 활성화
+            door.SetActive(true);
         }
+
     }
-    private void FixedUpdate()
-    {
-        
-    }
+
 
     //캐릭터 움직임
     void MoveCharacter()
@@ -147,9 +152,10 @@ public class MovementController : MonoBehaviour
             //점프 애니메이션 종료
             animator.SetBool("isJump", false);
         }
-
+        //콜리전된 tag가 eagle이고
         if (collision.transform.tag == "Eagle")
         {
+            //위에서 밟는걸 구현하는것이므로 위에서 떨어질땐 릿지드.벨로시티.y값은 -임 ,그리고 플레이어의 y값은 몬스터의 위치보다 위에 있어야함
             if (rb2d.velocity.y < 0 && transform.position.y > collision.transform.position.y)
             {
                 OnAttack(collision.transform);
@@ -161,9 +167,13 @@ public class MovementController : MonoBehaviour
 
     void OnAttack(Transform enermy)
     {
+        //밟았을때 튀어오르는 효과를 줌
         rb2d.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+        //밟았을때 주는 데미지
         EnemyHpBar.GetComponent<Image>().fillAmount -= 0.4f;
         Enemy_Eagle_Controller enemy_Eagle_Controller = enermy.GetComponent<Enemy_Eagle_Controller>();
+        //enemy_Eagle_Controller에 enemy_Eagle_Controller를 참조함
+        //enemy_Eagle_Controller 안에있는 OnDamaged메서드를 불러옴
         enemy_Eagle_Controller.OnDamaged();
     }
 

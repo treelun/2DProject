@@ -15,6 +15,7 @@ public class EmemyMove : MonoBehaviour
 
     public void Move(Vector2 _dir)
     {
+        //균일한 이동을 위해 정규화해줌
         direction = _dir.normalized;
 
     }

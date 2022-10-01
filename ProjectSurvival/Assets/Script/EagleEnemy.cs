@@ -32,9 +32,12 @@ public class EagleEnemy : Enemy
     private void Update()
     {
         StartCoroutine(EnemyMove());
+        //player의 체력이 0이면 
         if (PlayerHpBar.GetComponent<Image>().fillAmount == 0)
         {
+            //플레이어 파괴
             Destroy(Player);
+            //gameover활성화
             GameOver.SetActive(true);
         }
     }
@@ -67,6 +70,7 @@ public class EagleEnemy : Enemy
     {
         if (collision.transform.tag == "Player")
         {
+            //독수리 몬스터이기에 위에서 캐릭터를 공격하므로 캐릭터보다 위에서 collison되면 데미지를줌
             if (transform.position.y > collision.transform.position.y)
             {
                 OnDamaged(collision.transform.position);
@@ -78,22 +82,26 @@ public class EagleEnemy : Enemy
 
     void OnDamaged(Vector2 targetPos)
     {
+        //무적을 주기위해 레이어 변경
         Player.gameObject.layer = 9;
-
+        //피격 효과를위해 투명도 변화
         Player.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
         
-
+        //맞았을때 뒤로 밀리는 효과를 주기위해 삼항연산자 사용
         int dirc = Player.transform.position.x - targetPos.x > 0 ? 1 : -1;
         Player.GetComponent<Rigidbody2D>().AddForce(new Vector2(dirc, 1) * 9, ForceMode2D.Impulse);
+        //실직적으로 데미지를 줌
         PlayerHpBar.GetComponent<Image>().fillAmount -= 0.4f;
-
+        //2초뒤 offDamge메서드를 불러옴
         Invoke("offDamage", 2f);
 
     }
 
     void offDamage()
     {
+        //레리어 정상으로 돌림
         Player.gameObject.layer = 0;
+        //투명도 정상으로 돌림
         Player.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
     }
 

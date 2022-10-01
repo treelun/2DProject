@@ -19,15 +19,21 @@ public class Enemy : MonoBehaviour
     {
         isDirLeft = !isDirLeft;
         Vector3 thisScale = transform.localScale;
+        //isDirLeft가 false이면
         if (isDirLeft)
         {
-            thisScale.x = Mathf.Abs(thisScale.x);
+            
+            thisScale.x = 1;
+                
         }
         else
         {
-            thisScale.x = -Mathf.Abs(thisScale.x);
+
+            thisScale.x = -1;
+                
 
         }
+        //localscale이 1 이면 기본적인 이미지 방향을 바라보고 -1이면 반대쪽을 바라봄
         transform.localScale = thisScale;
     }
 }

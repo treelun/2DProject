@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameClear.unity
     guid: 7a31971f6df540c43b0a9ee1cee63fe2
+  - enabled: 1
+    path: Assets/Scenes/RunningMap.unity
+    guid: c99fd2d6d7271a644a34afba91c010ec
   m_configObjects: {}
