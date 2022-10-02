@@ -3661,6 +3661,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 810878595, guid: 1076f3cd00f93c7439e348522f6e6f97, type: 3}
+      propertyPath: movementSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1246676599, guid: 1076f3cd00f93c7439e348522f6e6f97, type: 3}
       propertyPath: m_Offset.y
       value: -0.5
@@ -3713,7 +3717,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 810878594, guid: 1076f3cd00f93c7439e348522f6e6f97, type: 3}
+    - {fileID: 2041632669, guid: 1076f3cd00f93c7439e348522f6e6f97, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1076f3cd00f93c7439e348522f6e6f97, type: 3}
 --- !u!4 &1913393778 stripped
 Transform:
