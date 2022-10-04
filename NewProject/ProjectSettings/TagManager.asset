@@ -58,6 +58,9 @@ TagManager:
   - name: map
     uniqueID: 1840724057
     locked: 0
+  - name: Costomer
+    uniqueID: 1567160223
+    locked: 0
   - name: Food
     uniqueID: 1753616393
     locked: 0

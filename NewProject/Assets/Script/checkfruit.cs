@@ -41,7 +41,7 @@ public class checkfruit : MonoBehaviour
         if (isGetwantfruit == false)
         {
             StartCoroutine(namemaker());
-            Text.GetComponent<TMP_Text>().text = fruitName[wantFruitNum] + "," + fruitName[wantFruitNum1] + "," + fruitName[wantFruitNum2] + " Please";
+            Text.GetComponent<TMP_Text>().text = fruitName[wantFruitNum] + "," + fruitName[wantFruitNum1] + "," + fruitName[wantFruitNum2] + " ¡÷ººø‰";
             isGetwantfruit = true;
         }
         else
