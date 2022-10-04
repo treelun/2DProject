@@ -12,11 +12,18 @@ public class MouseDragAndDrop : MonoBehaviour
 
     public bool isPoint;
     float DroptablePosY;
-    
+
+    GameObject checkfruit;
+
+    int num;
+    int num1;
+    int num2;
     // Start is called before the first frame update
     void Start()
     {
         LoadedPos = this.transform.position;
+        checkfruit = GameObject.Find("Box");
+        
     }
 
     // Update is called once per frame
@@ -63,7 +70,13 @@ public class MouseDragAndDrop : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Table")
+        num = checkfruit.GetComponent<checkfruit>().wantFruitNum;
+        num1 = checkfruit.GetComponent<checkfruit>().wantFruitNum1;
+        num2 = checkfruit.GetComponent<checkfruit>().wantFruitNum2;
+        if (collision.transform.tag == "Table" 
+            && transform.tag == checkfruit.GetComponent<checkfruit>().fruitName[num] 
+            || transform.tag == checkfruit.GetComponent<checkfruit>().fruitName[num1]
+            || transform.tag == checkfruit.GetComponent<checkfruit>().fruitName[num2])
         {
             Debug.Log(collision.transform.tag);
             isPoint = true;

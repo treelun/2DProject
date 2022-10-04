@@ -7,6 +7,7 @@ public class TitleCon : MonoBehaviour
 {
 
     TMP_Text tmptext;
+    float delta = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,15 @@ public class TitleCon : MonoBehaviour
     {
         if (tmptext != null)
         {
-            StartCoroutine(TitleColor());
+            
+            delta += Time.deltaTime;
+            if (delta > 0.1f)
+            {
+                StartCoroutine(TitleColor());
+                delta = 0;
+
+            }
+            
         }
 
         

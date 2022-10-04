@@ -6,6 +6,15 @@ TagManager:
   tags:
   - IsPoint
   - Table
+  - Apple
+  - Avocado
+  - Cheese
+  - Cherry
+  - Lemon
+  - MelonWater
+  - Peach
+  - Strawberry
+  - Tomato
   layers:
   - Default
   - TransparentFX
