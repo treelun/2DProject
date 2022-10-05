@@ -10,7 +10,7 @@ public class BoxManager : MonoBehaviour
 
     
     
-    int fruitMaxStack = 10;//나중에 플레이어가 구입하는 횟수로 변경
+    int fruitMaxStack = 10;
 
     private void Awake()
     {
@@ -40,8 +40,10 @@ public class BoxManager : MonoBehaviour
             for (int i = 0; i < fruitMaxStack; i++)
             {
                 GameObject fruitObject = Instantiate(prefabFruit);
+                //fruitObject.SetActive(false);
                 Fruit.Add(fruitObject);
                 fruitObject.transform.position = Box.transform.position;
+                
             }
         }
     }

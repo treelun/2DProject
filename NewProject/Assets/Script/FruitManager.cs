@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class FruitManager : MonoBehaviour
 {
-    public float price;
-    int fruitcount = 1;
+    public int price;
     public int fruitnum;
 
 }

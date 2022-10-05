@@ -6,7 +6,6 @@ TagManager:
   tags:
   - IsPoint
   - Table
-  - Apple
   - Avocado
   - Cheese
   - Cherry
@@ -15,6 +14,15 @@ TagManager:
   - Peach
   - Strawberry
   - Tomato
+  - "\uC0AC\uACFC"
+  - "\uC544\uBCF4\uCE74\uB3C4"
+  - "\uCE58\uC988"
+  - "\uCCB4\uB9AC"
+  - "\uB808\uBAAC"
+  - "\uC218\uBC15"
+  - "\uBCF5\uC22D\uC544"
+  - "\uB538\uAE30"
+  - "\uD1A0\uB9C8\uD1A0"
   layers:
   - Default
   - TransparentFX

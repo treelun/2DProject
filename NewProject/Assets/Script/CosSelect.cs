@@ -5,25 +5,24 @@ using UnityEngine.Sprites;
 
 public class CosSelect : MonoBehaviour
 {
+    GameObject FoodTable;
     public bool isCompleteBtn = false;
 
     public List<GameObject> Costomer;
-    private void Awake()
+    private void Start()
     {
-
-        
+        FoodTable = GameObject.Find("FoodTable");
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-        CallCostomer();
-
+        
+        if (FoodTable.GetComponent<TradeCon>().isSell == true)
+        {
+            isCompleteBtn = true;
+            CallCostomer();
+            FoodTable.GetComponent<TradeCon>().isSell = false;
+        }
 
     }
 

@@ -78,7 +78,7 @@ public class MouseDragAndDrop : MonoBehaviour
             || transform.tag == checkfruit.GetComponent<checkfruit>().fruitName[num1]
             || transform.tag == checkfruit.GetComponent<checkfruit>().fruitName[num2])
         {
-            Debug.Log(collision.transform.tag);
+            
             isPoint = true;
             DroptablePosY = collision.transform.position.y;
 
@@ -88,10 +88,10 @@ public class MouseDragAndDrop : MonoBehaviour
     {
         if (collision.transform.tag == "Table")
         {
-            Debug.Log(collision.transform.tag);
+           
             isPoint = false;
         }
-        Debug.Log(isPoint);
+       
 
     }
 }

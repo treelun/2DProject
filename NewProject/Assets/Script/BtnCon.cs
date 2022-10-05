@@ -6,13 +6,20 @@ using UnityEngine.SceneManagement;
 public class BtnCon : MonoBehaviour
 {
     GameObject PuaseText;
-    GameObject Day;
+    GameObject info;
+    GameObject MainBtn;
     bool isPuase = true;
+    
     private void Start()
     {
         PuaseText = GameObject.Find("PuaseText");
         PuaseText.SetActive(false);
-        Day = GameObject.Find("Day");
+
+        info = GameObject.Find("info");
+        info.SetActive(false);
+
+        MainBtn = GameObject.Find("MainBtn");
+
     }
     public void StartBtn()
     {
@@ -22,10 +29,7 @@ public class BtnCon : MonoBehaviour
     {
         Application.Quit();
     }
-    public void TradeBtn()
-    {
 
-    }
 
     public void PuaseBtn()
     {
@@ -43,13 +47,20 @@ public class BtnCon : MonoBehaviour
         }
         
     }
-    public void NextdayBtn()
-    {
-        SceneManager.LoadScene("BuyFruit");
-        Day.GetComponent<DayText>().day++;
-    }
+
     public void CompleteBuy()
     {
         SceneManager.LoadScene("StartGame");
+        
+    }
+    public void infoBtn()
+    {
+        info.SetActive(true);
+        MainBtn.SetActive(false);
+    }
+    public void backBtn()
+    {
+        info.SetActive(false);
+        MainBtn.SetActive(true);
     }
 }
