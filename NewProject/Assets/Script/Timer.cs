@@ -17,7 +17,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //타이머임
         time += Time.deltaTime;
         gameObject.GetComponent<TextMeshProUGUI>().text = time.ToString();
         if (time > 10)

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BGM : MonoBehaviour
 {
+    //BGM이 씬을 넘어가도 계속 재생되도록 하는 스크립트
     GameObject bgm;
     AudioSource backMusic;
 

@@ -5,7 +5,7 @@ using TMPro;
 
 public class TitleCon : MonoBehaviour
 {
-
+    //타이틀화면에 특이점을 주고싶었음
     TMP_Text tmptext;
     float delta = 0;
     // Start is called before the first frame update

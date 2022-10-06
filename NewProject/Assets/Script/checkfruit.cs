@@ -18,6 +18,7 @@ public class checkfruit : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        //리스트에 tag를 비교할 단어들을 담아줌
         fruitName = new List<string>();
         fruitName.Add("사과");
         fruitName.Add("아보카도");
@@ -40,27 +41,29 @@ public class checkfruit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("checkfruit sellcount" + FoodTable.GetComponent<TradeCon>().sellcount);
+        //새로운 원하는 과일을 얻기위해 Tradecon에 있는 isSell이 트루가 되면
         if (FoodTable.GetComponent<TradeCon>().isSell == true)
         {
+            //false를 반환
             isGetwantfruit = false;
-            Debug.Log("1" + isGetwantfruit);
+            
         }
-
-        //테스트용
+        //isGetwantfruit가 false면
         if (isGetwantfruit == false)
         {
-            Debug.Log("2" + isGetwantfruit);
+            //namemaker코루틴 실행
             StartCoroutine(namemaker());
             Text.GetComponent<TMP_Text>().text = fruitName[wantFruitNum] + "," + fruitName[wantFruitNum1] + "," + fruitName[wantFruitNum2] + " 주세요";
+            //결과값을 얻고 멈추기위해 isStopGet을 true로 반환
             isStopGet = true;
                 
             
             if (isStopGet == true)
             {
+                //코루틴멈춤
                 StopCoroutine(namemaker());
+                //startcoroutine을 멈추기위해 isGetwantfruit를 true로 반환
                 isGetwantfruit = true;
-                Debug.Log("3" + isGetwantfruit);
             }
 
             
@@ -68,12 +71,13 @@ public class checkfruit : MonoBehaviour
        
     }
 
-    IEnumerator namemaker()//테스트용
+    IEnumerator namemaker()
     {
-
+        //9가지의 과일을 사용하기에 랜덤한 숫자 0~8까지를 받음
         wantFruitNum = Random.Range(0, 9);
         wantFruitNum1 = Random.Range(0, 9);
         wantFruitNum2 = Random.Range(0, 9);
+        //같은 숫자(같은 과일종류)가 나오지않도록 조건문을 넣었으나 같은 종류가 나올때가있음...;
         if (wantFruitNum == wantFruitNum1)
         {
             wantFruitNum1 = Random.Range(0, 9);
@@ -86,10 +90,7 @@ public class checkfruit : MonoBehaviour
         {
             wantFruitNum2 = Random.Range(0, 9);
         }
-        else
-        {
-            yield return null;
-        }
+
         yield return null;
     }
    
