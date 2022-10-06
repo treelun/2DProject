@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
         
         time += Time.deltaTime;
         gameObject.GetComponent<TextMeshProUGUI>().text = time.ToString();
-        if (time > 15)
+        if (time > 10)
         {
             isNextday = true;
 

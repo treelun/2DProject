@@ -4444,7 +4444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -446, y: 27}
+  m_AnchoredPosition: {x: -484, y: 68}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1937843444
@@ -4494,8 +4494,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.4
-  m_fontSizeBase: 55.4
+  m_fontSize: 52.01
+  m_fontSizeBase: 52.01
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4530,7 +4530,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -50.54825, w: -67.39761}
+  m_margin: {x: 0, y: 0, z: -69.376526, w: -109.7612}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4911,6 +4911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a23f060b867b54e9e29ea7cea1c647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isNextday: 0
 --- !u!1 &2129987418
 GameObject:
   m_ObjectHideFlags: 0
@@ -5153,4 +5154,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c471e15bf40e6eb4fa2e77ee5639b674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isNextday: 0
+  istitle: 0

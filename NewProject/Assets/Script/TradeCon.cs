@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TradeCon : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class TradeCon : MonoBehaviour
     GameObject button;
     GameObject checkfruit;
     static int price;
-
+    GameObject highScore;
     int num;
     int num1;
     int num2;
@@ -20,10 +21,25 @@ public class TradeCon : MonoBehaviour
         Money = GameObject.Find("Money");
         button = GameObject.Find("Button");
         checkfruit = GameObject.Find("Box");
+        highScore = GameObject.Find("highScore");
     }
     private void Update()
     {
-        Money.GetComponent<TextMeshProUGUI>().text = "Money : " + price;
+        if (SceneManager.GetActiveScene().name == "StartGame")
+        {
+            Money.GetComponent<TextMeshProUGUI>().text = "Money : " + price;
+        }
+        else if (SceneManager.GetActiveScene().name == "Clear")
+        {
+            Money.GetComponent<TextMeshProUGUI>().text = "최종 점수 : " + price;
+        }
+        if (button.GetComponent<BtnCon>().istitle == true)
+        {
+            price = 0;
+        }
+        
+
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)

@@ -9,7 +9,7 @@ public class BtnCon : MonoBehaviour
     GameObject info;
     GameObject MainBtn;
     bool isPuase = true;
-    
+    public bool istitle = false;
     private void Start()
     {
         PuaseText = GameObject.Find("PuaseText");
@@ -24,6 +24,7 @@ public class BtnCon : MonoBehaviour
     public void StartBtn()
     {
         SceneManager.LoadScene("StartGame");
+        istitle = false;
     }
     public void QuitBtn()
     {
@@ -62,5 +63,11 @@ public class BtnCon : MonoBehaviour
     {
         info.SetActive(false);
         MainBtn.SetActive(true);
+    }
+
+    public void mainBtn()
+    {
+        SceneManager.LoadScene("MainMenu");
+        istitle = true;
     }
 }

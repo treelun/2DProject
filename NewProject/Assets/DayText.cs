@@ -31,6 +31,11 @@ public class DayText : MonoBehaviour
         }
 
         gameObject.GetComponent<TextMeshProUGUI>().text = day + "ÀÏÂ°";
+        if (day > 10)
+        {
+            SceneManager.LoadScene("Clear");
+            day = 0;
+        }
     }
 /*    IEnumerator PrintText(ref int day)
     {
