@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class BtnController : MonoBehaviour
 {
-
+    EagleEnemy eagle;
+    bool isRetry;
     private void Start()
     {
-
+        eagle = GetComponent<EagleEnemy>();
+        isRetry = eagle.retry;
     }
     public void StartButton()
     {
@@ -21,7 +23,14 @@ public class BtnController : MonoBehaviour
         Application.Quit();
     }
 
-
+    public void retrybtn()
+    {
+        
+            SceneManager.LoadScene("StartGame");
+        
+            Time.timeScale = 1;
+        
+    }
 
 
 }

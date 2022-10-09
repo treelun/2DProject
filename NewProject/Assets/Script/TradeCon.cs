@@ -10,7 +10,6 @@ public class TradeCon : MonoBehaviour
     GameObject button;
     GameObject checkfruit;
     static int price;
-    GameObject highScore;
     int num;
     int num1;
     int num2;
@@ -25,7 +24,6 @@ public class TradeCon : MonoBehaviour
         Money = GameObject.Find("Money");
         button = GameObject.Find("Button");
         checkfruit = GameObject.Find("Box");
-        highScore = GameObject.Find("highScore");
         animator = gameObject.GetComponent<Animator>();
     }
     private void Update()
@@ -50,22 +48,6 @@ public class TradeCon : MonoBehaviour
             //점수 초기화
             price = 0;
         }
-        //애니메이션 재생시간 조절(?)
-        //과일을 넣었을때 이게 들어간건지 안들어간건지 모르겠다는 컨펌을 받아서
-        //넣게되었음 쉬울줄알았는데 조건을 어디서 받아와야 할지 모르겠어서
-        //애니메이션이 1번 재생되고 바로 재생이 끝나면 좋을거같은데...
-        //라는 생각에서 구글링으로 검색 해답을 찾음
-        //GetCu...라는 메서드는 animator의 state의 isname이름이 뭔지 찾음
-        //이름이 같은게 실행중이고 시간을 nomalized로 값을 받아옴 
-        //여기에선 해당애니메이션의 Length 값을보고 넣어주었음
-        //이렇게하니 애니메이션이 0.33초 돌고 false가 되면서 idle상태가 됨
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("drop")
-            && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.33f)
-        {
-            Debug.Log("state가 drop임");
-            animator.SetBool("isDrop", false);
-        }
-
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -100,8 +82,7 @@ public class TradeCon : MonoBehaviour
             Debug.Log(sellcount);
 
             //판매가 되었다는 애니메이션 실행
-            animator.SetBool("isDrop", true);
-
+            animator.SetTrigger("isdrop");
             //3개를 팔았어?
             if (sellcount == 3)
             {
@@ -119,33 +100,13 @@ public class TradeCon : MonoBehaviour
             //문제가 있었다. 그래서 꺽고 꺽고 또꺽어서 해결했다..
         }
 
-
-
-
         else
         {
             price -= collision.gameObject.GetComponent<FruitManager>().price;
-
         }
 
 
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        num = checkfruit.GetComponent<checkfruit>().wantFruitNum;
-        num1 = checkfruit.GetComponent<checkfruit>().wantFruitNum1;
-        num2 = checkfruit.GetComponent<checkfruit>().wantFruitNum2;
-        if (collision.transform.tag == checkfruit.GetComponent<checkfruit>().fruitName[num]
-            || collision.transform.tag == checkfruit.GetComponent<checkfruit>().fruitName[num1]
-            || collision.transform.tag == checkfruit.GetComponent<checkfruit>().fruitName[num2])
-        {
-            animator.SetBool("isDrop", false);
-        }
-        
-    }
+
 
 }

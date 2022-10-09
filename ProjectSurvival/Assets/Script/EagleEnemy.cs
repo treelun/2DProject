@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EagleEnemy : Enemy
 {
@@ -18,6 +19,7 @@ public class EagleEnemy : Enemy
     public Transform checkWall;
 
     public float Hp;
+    public bool retry = false;
 
     private void Start()
     {
@@ -32,6 +34,7 @@ public class EagleEnemy : Enemy
     private void Update()
     {
         StartCoroutine(EnemyMove());
+        Time.timeScale = 1;
         //player의 체력이 0이면 
         if (PlayerHpBar.GetComponent<Image>().fillAmount == 0)
         {
@@ -39,6 +42,8 @@ public class EagleEnemy : Enemy
             Destroy(Player);
             //gameover활성화
             GameOver.SetActive(true);
+            retry = true;
+            Time.timeScale = 0;
         }
     }
     public IEnumerator EnemyMove()

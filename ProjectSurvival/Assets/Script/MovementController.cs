@@ -146,11 +146,16 @@ public class MovementController : MonoBehaviour
         //충돌한 개체의 tag값을 가져옴
         if (collision.transform.CompareTag("Ground"))
         {
-            print("isJump = false");
-            //isjump를 false로 바꿔줌 player가 땅에 닿았을 경우에만 점프하게 하고싶기 때문
-            isJump = false;
-            //점프 애니메이션 종료
-            animator.SetBool("isJump", false);
+            
+            if (rb2d.velocity.y < 1)
+            {
+                print("isJump = false");
+                //isjump를 false로 바꿔줌 player가 땅에 닿았을 경우에만 점프하게 하고싶기 때문
+                isJump = false;
+                //점프 애니메이션 종료
+                animator.SetBool("isJump", false);
+            }
+           
         }
         //콜리전된 tag가 eagle이고
         if (collision.transform.tag == "Eagle")
